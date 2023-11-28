@@ -80,7 +80,7 @@ To give Campers an idea of what to put in their bio, the placeholder attribute i
 
 With form submissions, it is useful, and good practice, to provide each submittable element with a name attribute. This attribute is used to identify the element in the form submission.
 
-Center the h1 and p elements by giving them a margin of 1em auto. Then, align their text in the center as well.
+Center the h1 and p elements by giving them a margin of 1em auto
 
 Center the form element, by giving it a margin of 0 auto. Then, fix its size to a maximum width of 500px, and a minimum width of 300px. In between that range, allow it to have a width of 60vw.
 
@@ -91,7 +91,7 @@ To give the fieldset elements a bit of separation, select them and give them a b
 
 The border of the last fieldset element looks a little out of place. You can select the last element of a specific type using the last-of-type CSS pseudo-class, like this:
 p:last-of-type { }
-That will select the last p element.
+That will select the last p element. 
 
 If you look close enough, you will notice the .inline elements are too high on the line.
 To combat this, set the vertical-align property to middle.

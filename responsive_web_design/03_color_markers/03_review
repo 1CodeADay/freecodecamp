@@ -152,4 +152,3 @@ If a blurRadius value isn't included, it defaults to 0 and produces sharp edges.
 But what if you wanted to expand the shadow out further? You can do that with the optional spreadRadius value:
 box-shadow: offsetX offsetY blurRadius spreadRadius color;
 Like blurRadius, spreadRadius defaults to 0 if it isn't included.
-
