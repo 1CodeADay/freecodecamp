@@ -1,0 +1,183 @@
+## Chap8 Learn Accessibility by Building a Quiz
+
+***Accessibility* is making your webpage easy for all people to use – even people with disabilities. In this course, you'll build a quiz webpage. You'll learn accessibility tools such as keyboard shortcuts, ARIA attributes, and design best practices.**
+
+You may be familiar with the meta element already; it is used to specify information about the page, such as the title, description, keywords, and author.
+
+Continuing with the meta elements, a viewport definition tells the browser how to render the page. Including one betters visual accessibility on mobile, and improves SEO (search engine optimization).
+
+Another important meta element for accessibility and SEO is the description definition. The value of the content attribute is used by search engines to provide a description of your page.
+
+Try being more descriptive with your title element. Hint: At least 15 characters
+
+Navigation is a core part of accessibility, and screen readers rely on you to provide the structure of your page. This is accomplished with semantic HTML elements.
+
+The header element will be used to introduce the page, as well as provide a navigation menu.
+The main element will contain the core content of your page.
+
+Within the header, provide context about the page by nesting one img, h1, and nav element.
+
+A useful property of an SVG (scalable vector graphics) is that it contains a *path attribute* which allows the image to be scaled without affecting the resolution of the resultant image.
+Currently, the img is assuming its default size, which is too large. CSS has a max function which returns the largest of a set of comma-separated values. For example:
+img {
+  width: max(250px, 25vw);
+}
+In this example, *img elements will have a minimum width of 250px. And as the viewport grows, the image will grow accordingly to be 25 percent of the viewport width.*
+
+As described in the freeCodeCamp Style Guide, **the logo should retain an aspect ratio of 35 / 4**, and have padding around the text.
+Use the *aspect-ratio property* to set the desired aspect ratio to 35 / 4. Finally, add a padding of 0.4rem all around.
+
+Make the header take up the full width of its parent container, set the display to use Flexbox.
+
+To enable navigation on the page, add an unordered list with the following three list items:
+. INFO
+. HTML
+. CSS
+The list items text should be wrapped in anchor tags.
+
+The *child combinator selector >* is used between selectors to target only elements that match the second selector and are a direct child of the first selector.
+This can be helpful when you have deeply nested elements and want to control the scope of your styling.
+Use the > selector to target the unordered list elements within the nav elements, and use Flexbox to evenly space the children.
+
+As this is a quiz, you will need a form for users to submit answers. You can semantically separate the content within the form using section elements.
+Within the main element, create a form with three nested section elements. Then, make the form submit to
+- You should give the action attribute a value of https://freecodecamp.org/practice-project/accessibility-quiz.
+- You should give the form element a method attribute with a value of post.
+<form method="post" action="https://freecodecamp.org/practice-project/accessibility-quiz"></form>
+
+To increase the page accessibility, *the role attribute* can be used to indicate the purpose behind an element on the page to assistive technologies. The role attribute is a part of the Web Accessibility Initiative (WAI), and accepts preset values.
+Give each of the section elements the *region role.*
+
+Every region role requires a label, which helps screen reader users understand the purpose of the region. *One method for adding a label is to add a heading element inside the region and then reference it with the aria-labelledby attribute.*
+Add the following aria-labelledby attributes to the section elements:
+student-info / html-questions / css-questions
+Then, within each section element, nest one h2 element with an id matching the corresponding aria-labelledby attribute. Give each h2 suitable text content.
+
+*Typeface* plays an important role in the accessibility of a page. Some fonts are easier to read than others, and this is especially true on low-resolution screens.
+Change the font for both the h1 and h2 elements to Verdana, and use another web-safe font in the sans-serif family as a fallback.
+Also, add a border-bottom of 4px solid #dfdfe2 to h2 elements to make the sections distinct.
+
+To be able to navigate within the page, give each anchor element an href corresponding to the id of the h2 elements.
+You should give the first a element an href of #student-info.
+
+*It is important to link each input to the corresponding label element.* This provides assistive technology users with a visual reference to the input.
+This is done by giving the label a for attribute, which contains the id of the input.
+This section will take a student's name, email address, and date of birth. Give the label elements appropriate for attributes, as well as text content. Then, link the input elements to the corresponding label elements.
+
+**Keeping in mind best-practices for form inputs, give each input an appropriate type and name attribute. Then, give the first input a placeholder attribute.**
+
+*Even though you added a placeholder to the first input element in the previous lesson, this is actually not a best-practice for accessibility;* too often, users confuse the placeholder text with an actual input value - they think there is already a value in the input.
+Remove the placeholder text from the first input element, relying on the label being the best-practice.
+
+Arguably, D.O.B. is not descriptive enough. This is especially true for visually impaired users. One way to get around such an issue, without having to add visible text to the label, is to add text only a screen reader can read.
+*Append a span element with a class of sr-only* to the current text content of the third label element.
+You should place the span after the text content D.O.B..
+
+The .sr-only text is still visible. There is a common pattern to visually hide text for only screen readers to read.
+This pattern is to set the following CSS properties:
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+Give each fieldset an adequate name attribute. Then, give both unordered lists a class of answers-list.
+
+To provide the functionality of the true/false questions, we need a set of inputs which do not allow both to be selected at the same time.
+Within each list element, nest one label element, and within each label element, nest one input element with the appropriate type.
+
+To provide the functionality of the true/false questions, we need a set of inputs which do not allow both to be selected at the same time.
+
+Although not required for label elements with a nested input, it is still best-practice to explicitly link a label with its corresponding input element.
+
+If you click on the radio inputs, you might notice both inputs within the same true/false fieldset can be selected at the same time.
+Group the relevant inputs together such that only one input from a pair can be selected at a time. Use the name attribute, then give it the same value.
+
+To prevent unnecessary repetition, target the before pseudo-element of the p element, and give it a content property of "Question #".
+You should use the p::before selector.
+
+Select elements take options which take value attributes. The first value attribute takes "" as value.
+
+You should give the textarea a rows attribute with a number.
+You should give the textarea a cols attribute with a number.
+
+Submit: You should add either a button or input element.
+You should place the submit button within the form element.
+
+Two final semantic HTML elements for this project are the footer and address elements. The footer element is a container for a collection of content that is related to the page, and the address element is a container for contact information for the author of the page.
+
+The br tags will allow each part of the address to be on its own line and are useful for presenting address elements properly.
+
+The address element does not have to contain a physical geographical location. It can be used to provide a link to the subject.
+
+Select the list elements within the navigation bar, and give them the following styles:
+*You should use either the nav li or nav > ul > li selector.*
+
+On the topic of visual accessibility, contrast between elements is a key factor. For example, the contrast between the text and the background of a heading should be at least 4.5:1.
+Change the font color of all the anchor elements within the list elements to something with a contrast ratio of at least 7:1.
+You should use the li > a selector.
+You should give the a element a color property.
+li > a {
+  color: white;
+  contrast: 7:1;
+}
+
+To make the navigation buttons look more like typical buttons, remove the underline from the anchor tags.
+Then, create a new selector targeting the navigation list elements so that when the cursor hovers over them, the background color and text color are switched, and the cursor becomes a pointer.
+
+Then, fix the header to the top of the viewport.
+You should give the header a position of fixed.
+You should give the header a top of 0.
+
+On small screens, the unordered list in the navigation bar overflows the right side of the screen.
+Fix this by using Flexbox to wrap the ul content. 
+
+Fix this by using Flexbox to wrap the ul content. Then, set the following CSS properties to correctly align the text:
+align-items: center;
+padding-inline-start: 0;
+margin-block: 0;
+height: 100%;
+
+To align the input boxes with each other, create a new ruleset that targets all input and label elements within an .info element and set the display property to inline-block.
+You should use either a .info > label, .info > input or .info label, .info input selector.
+
+To neaten the .question-block elements, set the following CSS properties:
+text-align: left;
+display: block;
+width: 100%;
+margin-top: 20px;
+padding-top: 5px;
+
+It is useful to see the default border around the fieldset elements, during development. However, it might not be the style you want.
+Remove the border and bottom padding on the .question elements.
+
+While ul/li elements are great at providing bullets for list items, your radio buttons don't need them. You can control what the bullets look with the list-style property. For example you can turn your bullets into circles with the following:
+ul {
+  list-style: circle;
+}
+
+You should set the color to a value with a contrast ratio of at least 7:1. Hint: I suggest #dfdfe2
+
+Clicking on the navigation links should jump the viewport to the relevant section. However, this jumping can be disorienting for some users.
+Select all elements, and set the scroll-behavior to smooth.
+
+Certain types of motion-based animations can cause discomfort for some users. In particular, people with vestibular disorders have sensitivity to certain motion triggers.
+**The @media at-rule** has a media feature called prefers-reduced-motion to set CSS based on the user's preferences. It can take one of the following values:
+reduce
+no-preference
+@media (feature: value) {
+  selector {
+    styles
+  }
+}
+Wrap the style rule that sets scroll-behavior: smooth within an @media at-rule with the media feature *prefers-reduced-motion having no-preference* set as the value.
+
+The navigation accessibility can be improved by providing keyboard shortcuts.
+The accesskey attribute accepts a space-separated list of access keys. For example:
+<button type="submit" accesskey="s">Submit</button>
+Note: It is not always advised to use access keys, but they can be useful
+
