@@ -1,0 +1,89 @@
+## Chap 8 : Learn More About CSS Pseudo Selectors By Building A Balance Sheet
+
+**You can use CSS pseudo selectors to change specific HTML elements.**
+**Build a balance sheet using pseudo selectors. You'll learn how to change the style of an element when you hover over it with your mouse, and trigger other events on your webpage.**
+
+Screen readers announce HTML elements based on the document flow. We will eventually want the balance sheet to have a heading of "Balance Sheet" and a subheading of "AcmeWidgetCorp". However, this order does not make sense if announced by a screen reader.
+
+You will use **CSS to reverse the order of the text** on the page, but the HTML order will make more sense for a screen reader.
+
+Within that, add three table elements. You will be using CSS to style these into a single table, but using separate tables will help screen readers understand the document flow.
+
+HTML tables use the **caption element to describe what the table is about**. The caption element should always be the first child of a table, but can be positioned with the caption-side CSS property.
+
+The **thead** and **tbody** elements are used to indicate which portion of your table is the header, and which portion contains the primary data or content.
+
+The **tr element is used to indicate a table row.** Add a tr element within your thead element. In your new tr element, add a td element, followed by three th elements.
+The **td element indicates a data cell**, while the **th element indicates a header cell**.
+
+Leave the td element empty. This element exists only to ensure your table has a four-column layout and associate the headers with the correct columns.
+
+Time to style your table. *Start by resetting the box model. Create an html selector and give it a box-sizing property set to border-box.*
+
+Before you get too far into your styling, you should make use of the sr-only class. You can *use CSS to make elements with this class completely hidden from the visual page, but still be announced by screen readers.*
+The CSS you are about to write is a common set of properties used to ensure elements are completely hidden visually.
+The **span[class~="sr-only"]** selector will select any span element whose class includes sr-only. Create that selector, and give it a border property set to 0.
+
+The CSS **clip property** is used to define the visible portions of an element. Clip property of **rect(1px, 1px, 1px, 1px).**
+
+The **clip-path property** determines the shape the clip property should take. Set the clip-path property to the value of *inset(50%)*, forming the clip-path into a rectangle within the element.
+
+To prevent the text content from **overflowing**, give your span[class~="sr-only"] selector an *overflow property set to hidden* and a *white-space property set to nowrap*.
+
+Finally, you need to *take these hidden elements out of the document flow*. Give the span[class~="sr-only"] selector a *position property set to absolute*, a padding property set to 0, and a margin property set to -1px. *This will ensure that not only are they no longer visible, but they are not even within the page view.*
+
+You wrapped your table in a section element - now you can style that to give your table a border. Create a section selector, and give it a max-width property set to 40rem for responsive design. Set the margin property to 0 auto to center it, and set the border property to 2px solid #d0d0d5.
+
+Justify the content to the end of the flex direction, and **make the element sticky**. Fix it to the top of its container with top: 0.
+Your #years selector should have a justify-content property set to flex-end.
+Your #years selector should have a position property set to sticky.
+
+The **calc() function** is a CSS function that allows you to calculate a value based on other values. For example, you can use it to *calculate the width of the viewport minus the margin* of an element:
+.example {
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+
+Adding position sticky moved the element into its own stack. To ensure your #years element does not get hidden by different stacks, add a **z-index property** set to *999* in the #years rule.
+
+The **span[class] syntax** will target any span element that has a class attribute set, regardless of the attribute's value.
+
+The **:not() pseudo-selector** is used to target all elements that do not match the selector - in this case, any of your span elements that do not have the sr-only class. This ensures that your earlier rules for the span[class~="sr-only"] selector are not overwritten.
+
+Rather than having to constantly double-check you are not overwriting your earlier properties, you can use the **!important keyword** to ensure these properties are always applied, regardless of order or specificity.
+
+Create a table selector to target your tables. Set the **border-collapse property** to collapse, which will allow cell borders to *collapse into a single border*, instead of a border around each cell. Also set the border property to 0 to hide the borders themselves.
+
+Ensure your table fills its container with a width property set to 100%, then position it relatively and give it a top margin of 3rem.
+
+Next you need to style your caption elements to look more like headers. 
+
+Now give the captions an absolute position, and shift them -2.25rem from the top and 0.5rem from the left.
+
+Create a selector to target your td elements within your table body. Give them a width to fill the viewport, with a **minimum and maximum of 4rem**. This approach *ensures that the width is fixed*, whereas setting width specifically would allow the elements to shrink to the container.
+- You should have a tbody td selector.
+- Your tbody td selector should have a width property set to 100vw.
+
+Now target the th elements within your table body, and give them a width of the entire container, less 12rem.
+- Your tbody th selector should have a width property set to calc(100% - 12rem).
+
+The **[attribute="value"] selector** targets any element that has an attribute with a specific value. Create a tr[class="total"] selector to target specifically your tr elements with the total class. Give it a bottom border of 4px double #0a0a23 and make the font bold.
+
+Target the th elements within your table rows where the class is total.
+You should have a tr[class="total"] th selector.
+
+The key difference between **tr[class="total"]** and **tr.total** is that the first will select tr elements where the only class is total. The second will select tr elements where the class includes total.
+You should have a tr.total td selector.
+
+The **:nth-of-type() pseudo-selector** is used to target specific elements based on their order among siblings of the same type. Use this pseudo-selector to target the third td element within your total table rows. Give it a right padding of 0.5rem.
+You should have a *tr.total td:nth-of-type(3)* selector.
+
+Vertically align the text to the top, horizontally align the text to the right
+You should have a vertical-align property set to top
+
+
+
+
+
+
+
